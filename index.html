@@ -58,7 +58,6 @@
       padding: 20px;
     }
 
-    /* Kone mein halka volume badge */
     .corner-volume-notice {
       position: absolute;
       top: 18px;
@@ -364,7 +363,6 @@
 
   <!-- شاہی مہر اوورلے -->
   <div id="sealOverlay">
-    <!-- Kone mein notice -->
     <div class="corner-volume-notice">
       <span>🔊 Turn Volume Up</span>
     </div>
@@ -376,8 +374,9 @@
     <div class="seal-instruction">مہر پر کلک کر کے دعوت نامہ کھولیں</div>
   </div>
 
-  <!-- dhol.mp3 audio -->
+  <!-- Audio element (Dhol.mp3 aur dhol.mp3 dono ke fallbacks ke sath) -->
   <audio id="bgMusic" loop preload="auto" playsinline>
+    <source src="Dhol.mp3" type="audio/mp3">
     <source src="dhol.mp3" type="audio/mp3">
   </audio>
 
@@ -471,7 +470,6 @@
   </div>
 
   <script>
-    // 1. Firework sound (1 sec thah)
     function playRealCrackerThah() {
       try {
         const AudioCtx = window.AudioContext || window.webkitAudioContext;
@@ -503,23 +501,31 @@
         whiteNoise.start(ctx.currentTime);
         whiteNoise.stop(ctx.currentTime + 0.85);
       } catch (err) {
-        console.log("Cracker audio error:", err);
+        console.log("Cracker error:", err);
       }
     }
 
-    // 2. Open invitation
     function openInvitation() {
+      // 1. Thah Firework Sound
       playRealCrackerThah();
 
+      // 2. Play Dhol Audio with explicit force
       const dhol = document.getElementById("bgMusic");
       if (dhol) {
         dhol.volume = 1.0;
-        dhol.play().catch(e => {
-          console.log("Play retry:", e);
-          setTimeout(() => dhol.play(), 200);
-        });
+        dhol.currentTime = 0;
+        const playPromise = dhol.play();
+        if (playPromise !== undefined) {
+          playPromise.catch(function(err) {
+            console.log("Initial audio error, retrying:", err);
+            // Mobile unlock fallback
+            dhol.load();
+            dhol.play();
+          });
+        }
       }
 
+      // 3. Confetti Animation
       confetti({
         particleCount: 160,
         spread: 90,
@@ -527,6 +533,7 @@
         colors: ['#c59b27', '#ffd700', '#6e1a1b', '#ffffff']
       });
 
+      // 4. Hide Seal
       const overlay = document.getElementById("sealOverlay");
       overlay.style.opacity = "0";
       setTimeout(() => {
