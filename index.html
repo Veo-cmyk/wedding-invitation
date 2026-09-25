@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>دعوت نامہ | محمد جنید ارشد اور زینب فاروق</title>
+  <title>Junaid & Zainab | Wedding Invitation</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -77,8 +77,8 @@
     }
 
     .seal-btn {
-      width: 145px;
-      height: 145px;
+      width: 155px;
+      height: 155px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #ffe699, #c59b27, #664803);
       border: 4px solid #ffea9f;
@@ -91,23 +91,25 @@
       animation: pulse 2.2s infinite ease-in-out;
       margin-bottom: 20px;
       user-select: none;
+      padding: 10px;
     }
 
     .seal-main-text {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      font-size: 27px;
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
       font-weight: 700;
       color: #3b2800;
-      line-height: 1.4;
+      line-height: 1.2;
       text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
     }
 
     .seal-sub-text {
       font-family: 'Cinzel', serif;
       font-size: 11px;
-      letter-spacing: 1.8px;
+      letter-spacing: 1.5px;
       color: #4a3400;
       font-weight: bold;
+      margin-top: 4px;
     }
 
     @keyframes pulse {
@@ -249,7 +251,7 @@
       color: #7a6e69;
     }
 
-    /* تقریبات */
+    /* تقریبات و نقشہ جات */
     .event-card {
       background: #ffffff;
       border: 1px solid #ebd9b0;
@@ -274,7 +276,7 @@
       background: linear-gradient(135deg, var(--gold), var(--gold-dark));
       color: #ffffff !important;
       text-decoration: none;
-      padding: 6px 18px;
+      padding: 8px 20px;
       border-radius: 20px;
       font-size: 14px;
       font-family: sans-serif;
@@ -324,6 +326,63 @@
       margin: 0 6px;
     }
 
+    /* دعا سیکشن */
+    .dua-box {
+      background: #fffdf8;
+      border: 1px solid var(--gold-light);
+      border-radius: 16px;
+      padding: 20px 15px;
+      margin: 25px 0;
+    }
+
+    .dua-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--maroon);
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+
+    .dua-translation {
+      font-size: 16px;
+      color: #5a4b44;
+      line-height: 2;
+    }
+
+    /* رابطہ و مبارکباد کارڈ */
+    .contact-card {
+      background: #faf7f2;
+      border: 1.5px dashed var(--gold);
+      border-radius: 18px;
+      padding: 22px 16px;
+      margin-top: 25px;
+    }
+
+    .contact-title {
+      font-size: 20px;
+      font-weight: bold;
+      color: var(--maroon);
+      margin-bottom: 4px;
+    }
+
+    .contact-name {
+      font-size: 18px;
+      color: var(--text);
+      font-weight: bold;
+    }
+
+    .contact-phone-display {
+      font-size: 20px;
+      color: var(--gold-dark);
+      font-family: sans-serif;
+      font-weight: bold;
+      direction: ltr;
+      display: block;
+      margin: 6px 0 12px 0;
+      letter-spacing: 1px;
+    }
+
     .whatsapp-btn {
       display: inline-flex;
       align-items: center;
@@ -336,7 +395,6 @@
       border-radius: 30px;
       font-size: 16px;
       font-family: sans-serif;
-      margin-top: 20px;
       box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
     }
 
@@ -368,13 +426,12 @@
     </div>
 
     <div class="seal-btn" onclick="openInvitation()">
-      <div class="seal-main-text">دعوت نامہ</div>
-      <div class="seal-sub-text">INVITATION</div>
+      <div class="seal-main-text">JUNAID'S</div>
+      <div class="seal-sub-text">WEDDING INVITATION</div>
     </div>
     <div class="seal-instruction">مہر پر کلک کر کے دعوت نامہ کھولیں</div>
   </div>
 
-  <!-- Audio element (Dhol.mp3 aur dhol.mp3 dono ke fallbacks ke sath) -->
   <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="Dhol.mp3" type="audio/mp3">
     <source src="dhol.mp3" type="audio/mp3">
@@ -422,7 +479,7 @@
       <div class="event-name">رسمِ مہندی</div>
       <p>ہفتہ، 31 اکتوبر 2026 | بوقت: 8:00 بجے شام</p>
       <p style="color: var(--gold-dark); font-weight: bold; margin-top: 5px;">بمقام: گاؤں کھوکھر، نارووال</p>
-      <a href="https://maps.google.com/?q=Village+Khokhar+Narowal" target="_blank" class="map-btn">📍 View on Google Maps</a>
+      <a href="https://maps.google.com/?q=Village+Khokhar+Narowal" target="_blank" class="map-btn">📍 Google Maps Location</a>
     </div>
 
     <!-- بارات -->
@@ -430,7 +487,7 @@
       <div class="event-name">تقریبِ بارات</div>
       <p>اتوار، 1 نومبر 2026 | روانگی: 1:00 بجے دوپہر</p>
       <p style="color: var(--gold-dark); font-weight: bold; margin-top: 5px;">بمقام: گاؤں مدو کاہلوں، نارووال</p>
-      <a href="https://maps.google.com/?q=Village+Maddo+Kahlwan+Narowal" target="_blank" class="map-btn">📍 View on Google Maps</a>
+      <a href="https://maps.google.com/?q=Village+Maddo+Kahlwan+Narowal" target="_blank" class="map-btn">📍 Google Maps Location</a>
     </div>
 
     <!-- ولیمہ -->
@@ -438,7 +495,7 @@
       <div class="event-name">دعوتِ ولیمہ</div>
       <p>پیر، 2 نومبر 2026 | بوقت: 2:00 بجے دوپہر</p>
       <p style="color: var(--gold-dark); font-weight: bold; margin-top: 5px;">بمقام: بشیر میرج ہال، صدیق پورہ، نارووال</p>
-      <a href="https://maps.google.com/?q=Bashir+Marriage+Hall+Siddiqpura+Narowal" target="_blank" class="map-btn">📍 View on Google Maps</a>
+      <a href="https://maps.google.com/?q=Bashir+Marriage+Hall+Siddiqpura+Narowal" target="_blank" class="map-btn">📍 Google Maps Location</a>
     </div>
 
     <!-- چشمِ براہ و منتظرین -->
@@ -458,15 +515,25 @@
       </div>
     </div>
 
-    <div class="divider"></div>
+    <!-- خوبصورت مسنون دعا -->
+    <div class="dua-box">
+      <div class="dua-arabic">بَارَكَ اللَّهُ لَكَ وَبَارَكَ عَلَيْكَ وَجَمَعَ بَيْنَكُمَا فِي خَيْرٍ</div>
+      <div class="dua-translation">"اللہ تعالیٰ آپ دونوں کے لیے برکت فرمائے، آپ پر برکتیں نازل کرے، اور آپ دونوں کو خیر و بھلائی میں اکٹھا رکھے۔"</div>
+    </div>
 
     <p style="font-size: 19px; color: var(--gold-dark); font-weight: bold;">
       آپ کی آمد ہمارے لیے باعثِ مسرت و برکت ہوگی۔
     </p>
 
-    <a href="https://wa.me/?text=ماشاءاللہ!+محمد+جنید+ارشد+اور+زینب+فاروق+کی+شادی+پر+بہت+بہت+مبارکباد۔" target="_blank" class="whatsapp-btn">
-      💬 واٹس ایپ پر مبارکباد دیں
-    </a>
+    <!-- رابطہ کارڈ مع آپ کا فون نمبر -->
+    <div class="contact-card">
+      <div class="contact-title">نیک تمناؤں اور دعاؤں کے لیے رابطہ</div>
+      <div class="contact-name">محمد جنید ارشد</div>
+      <span class="contact-phone-display">+92 320 7635420</span>
+      <a href="https://wa.me/923207635420?text=ماشاءاللہ!+محمد+جنید+ارشد+اور+زینب+فاروق+کی+شادی+پر+بہت+بہت+مبارکباد۔+اللہ+تعالیٰ+آپ+دونوں+کو+ہمیشہ+خوش+و+خرم+رکھے۔+آمین!" target="_blank" class="whatsapp-btn">
+        💬 واٹس ایپ پر مبارکباد و دعا دیں
+      </a>
+    </div>
   </div>
 
   <script>
@@ -506,10 +573,8 @@
     }
 
     function openInvitation() {
-      // 1. Thah Firework Sound
       playRealCrackerThah();
 
-      // 2. Play Dhol Audio with explicit force
       const dhol = document.getElementById("bgMusic");
       if (dhol) {
         dhol.volume = 1.0;
@@ -517,15 +582,12 @@
         const playPromise = dhol.play();
         if (playPromise !== undefined) {
           playPromise.catch(function(err) {
-            console.log("Initial audio error, retrying:", err);
-            // Mobile unlock fallback
             dhol.load();
             dhol.play();
           });
         }
       }
 
-      // 3. Confetti Animation
       confetti({
         particleCount: 160,
         spread: 90,
@@ -533,7 +595,6 @@
         colors: ['#c59b27', '#ffd700', '#6e1a1b', '#ffffff']
       });
 
-      // 4. Hide Seal
       const overlay = document.getElementById("sealOverlay");
       overlay.style.opacity = "0";
       setTimeout(() => {
