@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>دعوت نامہ | محمد جنید ارشد اور زینب فاروق</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Nastaliq+Urdu:wght@400;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --gold: #c59b27;
+      --gold-dark: #8c6819;
+      --gold-light: #f4e8c1;
+      --bg-cream: #faf6f0;
+      --card-bg: rgba(255, 255, 255, 0.96);
+      --maroon: #6e1a1b;
+      --text: #2a2421;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text);
+      font-family: 'Noto Nastaliq Urdu', serif;
+      background-image: radial-gradient(#dfd7c8 1.2px, transparent 1.2px);
+      background-size: 24px 24px;
+      line-height: 2.4;
+      padding: 20px 10px;
+      overflow-x: hidden;
+    }
+
+    /* شاہی مہر اوورلے */
+    #sealOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, #382c23 0%, #15110e 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Kone mein halka volume badge */
+    .corner-volume-notice {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 234, 159, 0.3);
+      color: #ffea9f;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-family: sans-serif;
+      backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      letter-spacing: 0.5px;
+    }
+
+    .seal-btn {
+      width: 145px;
+      height: 145px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #ffe699, #c59b27, #664803);
+      border: 4px solid #ffea9f;
+      box-shadow: 0 0 35px rgba(255, 215, 0, 0.65), inset 0 0 15px rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      animation: pulse 2.2s infinite ease-in-out;
+      margin-bottom: 20px;
+      user-select: none;
+    }
+
+    .seal-main-text {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 27px;
+      font-weight: 700;
+      color: #3b2800;
+      line-height: 1.4;
+      text-shadow: 1px 1px 1px rgba(255,255,255,0.4);
+    }
+
+    .seal-sub-text {
+      font-family: 'Cinzel', serif;
+      font-size: 11px;
+      letter-spacing: 1.8px;
+      color: #4a3400;
+      font-weight: bold;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+      50% { transform: scale(1.06); box-shadow: 0 0 45px rgba(255,223,128,0.85); }
+      100% { transform: scale(1); box-shadow: 0 0 20px rgba(212,175,55,0.4); }
+    }
+
+    .seal-instruction {
+      color: #f7eed3;
+      font-size: 19px;
+      letter-spacing: 0.5px;
+    }
+
+    /* کارڈ کنٹینر */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      border: 2px solid var(--gold-light);
+      border-radius: 24px;
+      box-shadow: 0 15px 40px rgba(140, 104, 25, 0.12);
+      padding: 40px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 32px;
+      color: var(--gold-dark);
+      margin-bottom: 4px;
+    }
+
+    .quran-ayah {
+      font-family: 'Amiri', serif;
+      font-size: 26px;
+      font-weight: bold;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .ayah-trans {
+      font-size: 15px;
+      color: #635752;
+      margin-bottom: 25px;
+    }
+
+    .divider {
+      width: 140px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      margin: 20px auto;
+    }
+
+    .host-text {
+      font-size: 20px;
+      margin-bottom: 25px;
+      line-height: 2.3;
+    }
+
+    .couple-box {
+      background: #fdfcf9;
+      border: 1.5px dashed #dfc990;
+      border-radius: 18px;
+      padding: 25px 15px;
+      margin: 25px 0;
+    }
+
+    .groom-title {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--maroon);
+      line-height: 1.8;
+    }
+
+    .with-tag {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 22px;
+      color: var(--gold);
+      display: block;
+      margin: 4px 0;
+    }
+
+    .bride-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--maroon);
+      line-height: 1.8;
+    }
+
+    .bride-sub {
+      font-size: 16px;
+      color: #6d625d;
+    }
+
+    /* ٹائمر */
+    .timer-wrap {
+      background: #fdfaf3;
+      border: 1px solid var(--gold-light);
+      border-radius: 16px;
+      padding: 18px;
+      margin: 25px 0;
+    }
+
+    .timer-heading {
+      font-size: 18px;
+      color: var(--gold-dark);
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .timer-grid {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      direction: ltr;
+    }
+
+    .time-slot {
+      background: #ffffff;
+      border: 1px solid #eadbb5;
+      padding: 8px 14px;
+      border-radius: 10px;
+      min-width: 65px;
+    }
+
+    .time-slot span {
+      display: block;
+      font-size: 22px;
+      font-weight: bold;
+      color: var(--maroon);
+      font-family: sans-serif;
+    }
+
+    .time-slot label {
+      font-size: 11px;
+      color: #7a6e69;
+    }
+
+    /* تقریبات */
+    .event-card {
+      background: #ffffff;
+      border: 1px solid #ebd9b0;
+      border-radius: 16px;
+      padding: 22px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    }
+
+    .event-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: var(--maroon);
+      border-bottom: 1px solid #f2e4c7;
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .map-btn {
+      display: inline-block;
+      margin-top: 14px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-family: sans-serif;
+      box-shadow: 0 3px 8px rgba(197, 155, 39, 0.3);
+    }
+
+    /* چشمِ براہ و منتظرین */
+    .family-section {
+      background: #fdfbf7;
+      border: 1px solid #ebd9b0;
+      border-radius: 18px;
+      padding: 28px 20px;
+      margin: 30px 0;
+    }
+
+    .family-heading {
+      font-size: 23px;
+      font-weight: bold;
+      color: var(--maroon);
+      margin-bottom: 8px;
+    }
+
+    .special-brother {
+      font-size: 21px;
+      font-weight: bold;
+      color: var(--gold-dark);
+      margin-bottom: 14px;
+      border-bottom: 1px dashed #e2ce9d;
+      padding-bottom: 10px;
+    }
+
+    .cousins-text-line {
+      font-size: 18px;
+      color: #3b2c28;
+      line-height: 2.6;
+      word-spacing: 4px;
+    }
+
+    .cousins-text-line span {
+      display: inline-block;
+      margin: 0 4px;
+    }
+
+    .sep-star {
+      color: var(--gold);
+      font-size: 14px;
+      margin: 0 6px;
+    }
+
+    .whatsapp-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #25d366;
+      color: #ffffff !important;
+      text-decoration: none;
+      padding: 10px 24px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-family: sans-serif;
+      margin-top: 20px;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+    }
+
+    #musicToggle {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #ffffff;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.18);
+      z-index: 100;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- شاہی مہر اوورلے -->
+  <div id="sealOverlay">
+    <!-- Kone mein notice -->
+    <div class="corner-volume-notice">
+      <span>🔊 Turn Volume Up</span>
+    </div>
+
+    <div class="seal-btn" onclick="openInvitation()">
+      <div class="seal-main-text">دعوت نامہ</div>
+      <div class="seal-sub-text">INVITATION</div>
+    </div>
+    <div class="seal-instruction">مہر پر کلک کر کے دعوت نامہ کھولیں</div>
+  </div>
+
+  <!-- dhol.mp3 audio -->
+  <audio id="bgMusic" loop preload="auto" playsinline>
+    <source src="dhol.mp3" type="audio/mp3">
+  </audio>
+
+  <button id="musicToggle" onclick="toggleMusic()" title="Play/Pause Music">🥁</button>
+
+  <div class="container">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="quran-ayah">وَخَلَقْنَاكُمْ أَزْوَاجًا</div>
+    <div class="ayah-trans">(اور ہم نے تمہیں جوڑوں کی صورت میں پیدا کیا)</div>
+
+    <div class="divider"></div>
+
+    <div class="host-text">
+      <strong>جناب ارشد علی صاحب اور ان کی اہلیہ</strong><br>
+      اپنے پیارے صاحبزادے کی شادی خانہ آبادی کے اس پرمسرت موقع پر<br>
+      آپ کی پرخلوص شرکت اور دعاؤں کے متمنی ہیں۔
+    </div>
+
+    <div class="couple-box">
+      <div class="groom-title">محمد جنید ارشد</div>
+      <span class="with-tag">with</span>
+      <div class="bride-title">زینب فاروق</div>
+      <div class="bride-sub">(دخترِ محترم فاروق صاحب)</div>
+    </div>
+
+    <!-- ٹائمر -->
+    <div class="timer-wrap">
+      <div class="timer-heading">تقریب شروع ہونے میں باقی وقت</div>
+      <div class="timer-grid">
+        <div class="time-slot"><span id="days">00</span><label>Days</label></div>
+        <div class="time-slot"><span id="hours">00</span><label>Hours</label></div>
+        <div class="time-slot"><span id="minutes">00</span><label>Mins</label></div>
+        <div class="time-slot"><span id="seconds">00</span><label>Secs</label></div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <h2 style="font-size: 24px; color: var(--gold-dark); margin-bottom: 20px;">پروگرام کی تفصیلات</h2>
+
+    <!-- مہندی -->
+    <div class="event-card">
+      <div class="event-name">رسمِ مہندی</div>
+      <p>ہفتہ، 31 اکتوبر 2026 | بوقت: 8:00 بجے شام</p>
+      <p style="color: var(--gold-dark); font-weight: bold; margin-top: 5px;">بمقام: گاؤں کھوکھر، نارووال</p>
+      <a href="https://maps.google.com/?q=Village+Khokhar+Narowal" target="_blank" class="map-btn">📍 View on Google Maps</a>
+    </div>
+
+    <!-- بارات -->
+    <div class="event-card">
+      <div class="event-name">تقریبِ بارات</div>
+      <p>اتوار، 1 نومبر 2026 | روانگی: 1:00 بجے دوپہر</p>
+      <p style="color: var(--gold-dark); font-weight: bold; margin-top: 5px;">بمقام: گاؤں مدو کاہلوں، نارووال</p>
+      <a href="https://maps.google.com/?q=Village+Maddo+Kahlwan+Narowal" target="_blank" class="map-btn">📍 View on Google Maps</a>
+    </div>
+
+    <!-- ولیمہ -->
+    <div class="event-card">
+      <div class="event-name">دعوتِ ولیمہ</div>
+      <p>پیر، 2 نومبر 2026 | بوقت: 2:00 بجے دوپہر</p>
+      <p style="color: var(--gold-dark); font-weight: bold; margin-top: 5px;">بمقام: بشیر میرج ہال، صدیق پورہ، نارووال</p>
+      <a href="https://maps.google.com/?q=Bashir+Marriage+Hall+Siddiqpura+Narowal" target="_blank" class="map-btn">📍 View on Google Maps</a>
+    </div>
+
+    <!-- چشمِ براہ و منتظرین -->
+    <div class="family-section">
+      <div class="family-heading">چشمِ براہ و منتظرین</div>
+      <div class="special-brother">برادرِ خاص: محمد شاہزیب ارشد</div>
+      <div class="cousins-text-line">
+        <span>مرتضیٰ</span><span class="sep-star">✦</span>
+        <span>دانش</span><span class="sep-star">✦</span>
+        <span>علی حیدر</span><span class="sep-star">✦</span>
+        <span>افتخار احمد</span><span class="sep-star">✦</span>
+        <span>امداد حسین</span><span class="sep-star">✦</span>
+        <span>مزمل</span><span class="sep-star">✦</span>
+        <span>طیب سلطان</span><span class="sep-star">✦</span>
+        <span>عاطف مشتاق</span><span class="sep-star">✦</span>
+        <span>مصطفیٰ</span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="font-size: 19px; color: var(--gold-dark); font-weight: bold;">
+      آپ کی آمد ہمارے لیے باعثِ مسرت و برکت ہوگی۔
+    </p>
+
+    <a href="https://wa.me/?text=ماشاءاللہ!+محمد+جنید+ارشد+اور+زینب+فاروق+کی+شادی+پر+بہت+بہت+مبارکباد۔" target="_blank" class="whatsapp-btn">
+      💬 واٹس ایپ پر مبارکباد دیں
+    </a>
+  </div>
+
+  <script>
+    // 1. Firework sound (1 sec thah)
+    function playRealCrackerThah() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        const ctx = new AudioCtx();
+
+        const bufferSize = ctx.sampleRate * 0.85;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const output = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          output[i] = Math.random() * 2 - 1;
+        }
+
+        const whiteNoise = ctx.createBufferSource();
+        whiteNoise.buffer = buffer;
+
+        const filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(800, ctx.currentTime);
+        filter.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.8);
+
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(1.5, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.8);
+
+        whiteNoise.connect(filter);
+        filter.connect(gain);
+        gain.connect(ctx.destination);
+
+        whiteNoise.start(ctx.currentTime);
+        whiteNoise.stop(ctx.currentTime + 0.85);
+      } catch (err) {
+        console.log("Cracker audio error:", err);
+      }
+    }
+
+    // 2. Open invitation
+    function openInvitation() {
+      playRealCrackerThah();
+
+      const dhol = document.getElementById("bgMusic");
+      if (dhol) {
+        dhol.volume = 1.0;
+        dhol.play().catch(e => {
+          console.log("Play retry:", e);
+          setTimeout(() => dhol.play(), 200);
+        });
+      }
+
+      confetti({
+        particleCount: 160,
+        spread: 90,
+        origin: { y: 0.6 },
+        colors: ['#c59b27', '#ffd700', '#6e1a1b', '#ffffff']
+      });
+
+      const overlay = document.getElementById("sealOverlay");
+      overlay.style.opacity = "0";
+      setTimeout(() => {
+        overlay.style.display = "none";
+      }, 700);
+    }
+
+    function toggleMusic() {
+      const music = document.getElementById("bgMusic");
+      const btn = document.getElementById("musicToggle");
+      if (music.paused) {
+        music.play();
+        btn.innerText = "🥁";
+      } else {
+        music.pause();
+        btn.innerText = "🔇";
+      }
+    }
+
+    // Countdown Timer
+    const weddingDate = new Date("October 31, 2026 20:00:00").getTime();
+
+    const timer = setInterval(function() {
+      const now = new Date().getTime();
+      const distance = weddingDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+      document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+      document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+      document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+      if (distance < 0) {
+        clearInterval(timer);
+        document.querySelector(".timer-wrap").innerHTML = "<div class='timer-heading'>الحمدللہ تقریب کا باقاعدہ آغاز ہو چکا ہے!</div>";
+      }
+    }, 1000);
+  </script>
+
+</body>
+</html>
